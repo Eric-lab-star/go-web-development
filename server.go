@@ -11,6 +11,9 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", handleHome)
-	fmt.Println("starting server on http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Println("err", err)
+	}
 }
