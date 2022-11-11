@@ -1,44 +1,33 @@
 package main
 
 import (
-	"errors"
-
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 )
 
-type Handler func(w http.ResponseWriter, r *http.Request) error
-
-func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if err := h(w, r); err != nil {
-		// handle returned error here.
-		w.WriteHeader(503)
-		w.Write([]byte("bad request"))
-	}
+func init() {
+	chi.RegisterMethod("LINK")
+	chi.RegisterMethod("UNLINK")
+	chi.RegisterMethod("WOOHOO")
 }
 
 func main() {
 	r := chi.NewRouter()
-	r.Method("GET", "/", Handler(customHandler))
-	r.Method("GET", "/movies", Handler(movieHandler))
+	r.Use(middleware.RequestID)
+	r.Use(middleware.Logger)
+	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("hello world"))
+	})
+	r.MethodFunc("LINK", "/link", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("custom link method"))
+	})
+	r.MethodFunc("WOOHOO", "/woo", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("custom woohoo method"))
+	})
+	r.HandleFunc("/everything", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("capturing all standard http methods, as well as LINK, UNLINK and WOOHOO"))
+	})
 	http.ListenAndServe("localhost:8080", r)
-}
-
-func customHandler(w http.ResponseWriter, r *http.Request) error {
-	q := r.URL.Query().Get("err")
-	if q != "" {
-		return errors.New(q)
-	}
-	w.Write([]byte("foo"))
-	return nil
-}
-
-func movieHandler(w http.ResponseWriter, r *http.Request) error {
-	q := r.URL.Query().Get("err")
-	if q != "" {
-		return errors.New(q)
-	}
-	w.Write([]byte("movies"))
-	return nil
 }
