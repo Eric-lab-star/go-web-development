@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -13,23 +14,31 @@ func main() {
 	var r = chi.NewRouter()
 	r.Get("/", handleHome)
 	r.Get("/contact", handleContact)
+	r.Get("/faq", handleFaq)
 	log.Println("server is listening to port 3003")
 	http.ListenAndServe("localhost:3003", r)
 }
 
 func handleHome(w http.ResponseWriter, r *http.Request) {
+	log.Println("running home")
 	tplPath := filepath.Join("template", "home.html")
 	exeTemplate(w, "", tplPath)
 
 }
 
 func handleContact(w http.ResponseWriter, r *http.Request) {
-	data := make(map[string]string)
-	data["Name"] = "Kim"
-	data["Email"] = "cyon256@naver.com"
+	data := map[string]string{
+		"Name":  "Kim",
+		"Email": "cyon256@naver.com",
+	}
 	tplPath := filepath.Join("template", "contact.html")
 	exeTemplate(w, data, tplPath)
 
+}
+
+func handleFaq(w http.ResponseWriter, r *http.Request) {
+	data := map[string]string{"Name": "Kim"}
+	exeTemplate(w, data, filepath.Join("template", "faq.html"))
 }
 
 func exeTemplate(w http.ResponseWriter, data any, tplPath string) {
@@ -39,8 +48,11 @@ func exeTemplate(w http.ResponseWriter, data any, tplPath string) {
 		http.Error(w, "Found Error parsing template", http.StatusInternalServerError)
 		return
 	}
+	fmt.Println("hello")
+	log.Println("log print")
 	err = tpl.Execute(w, data)
 	if err != nil {
+		fmt.Println(err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
 	}
