@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -21,14 +22,14 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 	tplPath := filepath.Join("template", "hello.html")
 	tpl, err := template.ParseFiles(tplPath)
 	if err != nil {
-		log.Printf("parsing template: %v", err)
-
+		fmt.Printf("parsing template: %v", err)
+		http.Error(w, "There was an error parsing the template", http.StatusInternalServerError)
 		return
 	}
 	err = tpl.Execute(w, "string")
 	if err != nil {
-		log.Printf("executing template: %v", err)
-
+		fmt.Printf("executing template: %v", err)
+		http.Error(w, "There was an error executing the template", http.StatusInternalServerError)
 		return
 	}
 }
