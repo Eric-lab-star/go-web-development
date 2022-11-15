@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
 
+	"github.com/Eric-lab-star/go-web-development/views"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -15,7 +14,7 @@ func main() {
 	r.Get("/", handleHome)
 	r.Get("/contact", handleContact)
 	r.Get("/faq", handleFaq)
-	log.Println("server is listening to port 3003")
+	log.Println("server is listening to port http://localhost:3003")
 	http.ListenAndServe("localhost:3003", r)
 }
 
@@ -37,23 +36,18 @@ func handleContact(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleFaq(w http.ResponseWriter, r *http.Request) {
-	data := map[string]string{"Name": "Kim"}
+	data := map[string]string{"Name": ""}
 	exeTemplate(w, data, filepath.Join("template", "faq.html"))
 }
 
-func exeTemplate(w http.ResponseWriter, data any, tplPath string) {
+func exeTemplate(w http.ResponseWriter, data any, filepath string) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	tpl, err := template.ParseFiles(tplPath)
+	tpl, err := views.Parse(filepath)
+
 	if err != nil {
 		http.Error(w, "Found Error parsing template", http.StatusInternalServerError)
 		return
 	}
-	fmt.Println("hello")
-	log.Println("log print")
-	err = tpl.Execute(w, data)
-	if err != nil {
-		fmt.Println(err)
-		http.Error(w, "Internal server error", http.StatusInternalServerError)
-		return
-	}
+	tpl.Execute(w, nil)
+
 }
