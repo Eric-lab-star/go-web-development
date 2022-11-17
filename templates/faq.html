@@ -8,6 +8,11 @@
   </head>
   <body>
     <h1>FAQ</h1>
-    <h2>{{if .Name}} {{.Name}} {{else}}there{{end}}</h2>
+    {{range .}} {{template "QA" .}} {{end}}
   </body>
 </html>
+
+{{define "QA"}}
+<h2>{{.Question}}</h2>
+<h3>{{.Answer}}</h3>
+{{end}}

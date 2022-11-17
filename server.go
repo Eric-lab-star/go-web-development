@@ -15,10 +15,13 @@ func main() {
 	r := chi.NewRouter()
 	r.Get("/", controllers.StaticHanlder(
 		views.Must(views.ParseFS(templates.FS, "home.html"))))
+
 	r.Get("/contact", controllers.StaticHanlder(
 		views.Must(views.ParseFS(templates.FS, "contact.html"))))
-	r.Get("/faq", controllers.StaticHanlder(
+
+	r.Get("/faq", controllers.FAQ(
 		views.Must(views.ParseFS(templates.FS, "faq.html"))))
+
 	log.Println("server is listening to port http://localhost:3003")
 	http.ListenAndServe("localhost:3003", r)
 

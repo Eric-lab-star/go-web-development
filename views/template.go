@@ -36,7 +36,7 @@ func Parse(filePath string) (Template, error) {
 
 func (t Template) Execute(w http.ResponseWriter, data interface{}) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	err := t.htmlTpl.Execute(w, nil)
+	err := t.htmlTpl.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
