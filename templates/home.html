@@ -1,40 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Welcom to my Blog</h1>
-    <a
-      href="/contact"
-      style="
-        color: blue;
-        font-size: 20px;
-        text-decoration: none;
-        display: block;
-      "
-      >contact</a
-    >
-
-    <a
-      href="/faq"
-      style="color: red; font-size: 20px; text-decoration: none; display: block"
-      >faq</a
-    >
-
-    {{template "lorem-ipsum"}} {{template "lorem-ipsum"}} {{template
-    "lorem-ipsum"}} {{template "lorem-ipsum"}} {{define "lorem-ipsum"}}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor eu
-      tellus at pulvinar. Vestibulum hendrerit vel leo ac pulvinar. Proin quis
-      finibus lectus. Etiam faucibus sem eget scelerisque dapibus. Vivamus
-      lectus urna, fermentum in odio sit amet, elementum lobortis felis. Morbi
-      dapibus cursus elit, ac ultrices est ultrices consectetur. Donec imperdiet
-      urna at consequat pellentesque. Donec eget laoreet eros.
-    </p>
-    {{end}}
-  </body>
-</html>
+{{define "page"}}
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor eu
+  tellus at pulvinar. Vestibulum hendrerit vel leo ac pulvinar. Proin quis
+  finibus lectus. Etiam faucibus sem eget scelerisque dapibus. Vivamus lectus
+  urna, fermentum in odio sit amet, elementum lobortis felis. Morbi dapibus
+  cursus elit, ac ultrices est ultrices consectetur. Donec imperdiet urna at
+  consequat pellentesque. Donec eget laoreet eros.
+</p>
+{{ end }}

@@ -14,13 +14,13 @@ import (
 func main() {
 	r := chi.NewRouter()
 	r.Get("/", controllers.StaticHanlder(
-		views.Must(views.ParseFS(templates.FS, "home.html"))))
+		views.Must(views.ParseFS(templates.FS, "layout.html", "home.html"))))
 
 	r.Get("/contact", controllers.StaticHanlder(
-		views.Must(views.ParseFS(templates.FS, "contact.html"))))
+		views.Must(views.ParseFS(templates.FS, "layout.html", "contact.html"))))
 
 	r.Get("/faq", controllers.FAQ(
-		views.Must(views.ParseFS(templates.FS, "faq.html"))))
+		views.Must(views.ParseFS(templates.FS, "layout.html", "faq.html"))))
 
 	log.Println("server is listening to port http://localhost:3003")
 	http.ListenAndServe("localhost:3003", r)
