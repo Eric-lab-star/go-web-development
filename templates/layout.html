@@ -8,16 +8,24 @@
     <link rel="stylesheet" href="../files/globalStyle.css" />
   </head>
   <body>
-    <header>
-      <h1 class="text-lg">KSK, Blog</h1>
-      <div>
-        <a href="/">HOME</a>
-        <a href="/contact">CONTACT</a>
-        <a href="/faq">FAQ</a>
+    <header
+      class="flex p-1 bg-gradient-to-r from-green-600 to-green-400 text-white items-center"
+    >
+      <h1 class="text-lg mr-3 hover:cursor-pointer hover:underline">Blog</h1>
+      <div class="flex-grow space-x-2">
+        <a class="hover:cursor-pointer hover:underline" href="/">Home</a>
+        <a class="hover:cursor-pointer hover:underline" href="/contact"
+          >Contact</a
+        >
+        <a class="hover:cursor-pointer hover:underline" href="/faq">FAQ</a>
+      </div>
+
+      <div class="hover:underline hover:cursor-pointer">Login</div>
+      <div class="rounded-md bg-green-500 px-2 mx-2 hover:cursor-pointer">
+        Sign up
       </div>
     </header>
-    {{template "page"}}
-
+    <div class="p-3">{{template "page"}}</div>
     <footer>&copy; 2022 Go Web Development Kyungsub Kim</footer>
   </body>
 </html>

@@ -34,7 +34,7 @@ func main() {
 		)))
 	workDir, _ := os.Getwd()
 	filesDir := http.Dir(filepath.Join(workDir, "dist"))
-	FileServer(r, "/files", filesDir)
+	FileServer(r, "/files/", filesDir)
 	log.Println("server is listening to port http://localhost:3003")
 	http.ListenAndServe("localhost:3003", r)
 }
@@ -52,6 +52,7 @@ func FileServer(r chi.Router, path string, root http.FileSystem) {
 
 	r.Get(path, func(w http.ResponseWriter, r *http.Request) {
 		rctx := chi.RouteContext(r.Context())
+
 		pathPrefix := strings.TrimSuffix(rctx.RoutePattern(), "/*")
 		fs := http.StripPrefix(pathPrefix, http.FileServer(root))
 		fs.ServeHTTP(w, r)
