@@ -25,7 +25,11 @@
         Sign up
       </div>
     </header>
-    <div class="p-3">{{template "page"}}</div>
-    <footer>&copy; 2022 Go Web Development Kyungsub Kim</footer>
+    <div class="px-10 pt-10 min-h-[90vh]">{{template "page" .}}</div>
+    <footer
+      class="py-2 px-5 text-sm text-slate-200 font-thin h-20 bg-gradient-to-b from-green-400 to-green-600 border-t-slate-400"
+    >
+      &copy; 2022 Go Web Development Kyungsub Kim
+    </footer>
   </body>
 </html>
