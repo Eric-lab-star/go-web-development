@@ -1,4 +1,12 @@
 {{define "page" }}
-<h1>FAQ</h1>
+<h1 class="font-bold text-lg">FAQ</h1>
 
-{{.}} {{end}}
+<div class="grid grid-cols-2 gap-2 mt-2">
+  {{range .}}
+  <div class="border-t">
+    <div class="text-lg font-bold">{{.Question}}</div>
+    <li class="list-disc">{{.Answer}}</li>
+  </div>
+  {{end}}
+</div>
+{{end}}
