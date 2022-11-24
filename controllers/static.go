@@ -34,3 +34,17 @@ func FAQ(tpl views.Template) http.HandlerFunc {
 		tpl.Execute(w, questions)
 	}
 }
+
+func Contact(tpl views.Template) http.HandlerFunc {
+	contact := struct {
+		Name  string
+		Email string
+	}{
+		Name:  "Kim",
+		Email: "cyon256@icloud.com",
+	}
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		tpl.Execute(w, contact)
+	}
+}

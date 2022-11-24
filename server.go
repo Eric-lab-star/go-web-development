@@ -23,7 +23,7 @@ func main() {
 			views.ParseFS(templates.FS, "layout.html", "home.html"),
 		)))
 
-	r.Get("/contact", controllers.StaticHanlder(
+	r.Get("/contact", controllers.Contact(
 		views.Must(
 			views.ParseFS(templates.FS, "layout.html", "contact.html"),
 		)))
