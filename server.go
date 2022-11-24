@@ -32,6 +32,10 @@ func main() {
 		views.Must(
 			views.ParseFS(templates.FS, "layout.html", "faq.html"),
 		)))
+	r.Get("/signup", controllers.StaticHanlder(
+		views.Must(
+			views.ParseFS(templates.FS, "layout.html", "signup.html"),
+		)))
 	workDir, _ := os.Getwd()
 	filesDir := http.Dir(filepath.Join(workDir, "dist"))
 	FileServer(r, "/files/", filesDir)
