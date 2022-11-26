@@ -32,10 +32,12 @@ func main() {
 		views.Must(
 			views.ParseFS(templates.FS, "layout.html", "faq.html"),
 		)))
-	r.Get("/signup", controllers.StaticHanlder(
-		views.Must(
-			views.ParseFS(templates.FS, "layout.html", "signup.html"),
-		)))
+	usersC := controllers.Users{}
+	usersC.Templates.New = views.Must(
+		views.ParseFS(templates.FS, "layout.html", "signup.html"),
+	)
+	r.Get("/signup", usersC.New)
+
 	workDir, _ := os.Getwd()
 	filesDir := http.Dir(filepath.Join(workDir, "dist"))
 	FileServer(r, "/files/", filesDir)
@@ -56,7 +58,6 @@ func FileServer(r chi.Router, path string, root http.FileSystem) {
 
 	r.Get(path, func(w http.ResponseWriter, r *http.Request) {
 		rctx := chi.RouteContext(r.Context())
-
 		pathPrefix := strings.TrimSuffix(rctx.RoutePattern(), "/*")
 		fs := http.StripPrefix(pathPrefix, http.FileServer(root))
 		fs.ServeHTTP(w, r)
