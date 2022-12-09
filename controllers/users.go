@@ -13,6 +13,6 @@ type Users struct {
 }
 
 func (u Users) New(w http.ResponseWriter, r *http.Request) {
-	// we need a view to render
+
 	u.Templates.New.Execute(w, nil)
 }

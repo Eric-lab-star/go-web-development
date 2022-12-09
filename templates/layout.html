@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta
+      name="description"
+      content="personal blog to leanr go web developement"
+    />
+    <title>Blog-O</title>
     <link rel="stylesheet" href="../files/globalStyle.css" />
     <script
       src="https://kit.fontawesome.com/231f35540a.js"
@@ -23,26 +27,31 @@
         <a
           class="flex flex-col items-center hover:scale-110 ease-in-out hover:cursor-pointer"
           href="/"
+          title="home"
         >
           <i class="fa-solid fa-house"></i><span class="text-xs">Home</span>
         </a>
         <a
           class="flex flex-col items-center hover:cursor-pointer hover:scale-110 ease-in-out"
           href="/contact"
+          title="contact"
           ><i class="fa-solid fa-address-card"></i
           ><span class="text-xs">Contact</span></a
         >
         <a
           class="flex flex-col items-center hover:cursor-pointer hover:scale-110 ease-in-out"
           href="/faq"
+          title="faq"
         >
           <i class="fa-solid fa-question"></i><span class="text-xs">FAQ</span>
         </a>
       </div>
 
-      <div class="hover:underline hover:cursor-pointer">Login</div>
+      <div class="hover:underline hover:cursor-pointer">
+        <a title="login">Login</a>
+      </div>
       <div class="px-2 mx-2 hover:cursor-pointer">
-        <a href="/signup" class="flex flex-col items-center">
+        <a href="/signup" class="flex flex-col items-center" title="sign up">
           <i class="fa-solid text-xl fa-right-to-bracket"></i
           ><span class="text-xs">Sign-up</span>
         </a>
