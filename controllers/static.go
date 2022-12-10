@@ -2,17 +2,15 @@ package controllers
 
 import (
 	"net/http"
-
-	"github.com/Eric-lab-star/go-web-development/views"
 )
 
-func StaticHanlder(tpl views.Template) http.HandlerFunc {
+func StaticHanlder(tpl Template) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		tpl.Execute(w, nil)
 	}
 }
 
-func FAQ(tpl views.Template) http.HandlerFunc {
+func FAQ(tpl Template) http.HandlerFunc {
 	questions := []struct {
 		Question string
 		Answer   string
@@ -35,7 +33,7 @@ func FAQ(tpl views.Template) http.HandlerFunc {
 	}
 }
 
-func Contact(tpl views.Template) http.HandlerFunc {
+func Contact(tpl Template) http.HandlerFunc {
 	contact := struct {
 		Name  string
 		Email string
