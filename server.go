@@ -37,6 +37,7 @@ func main() {
 		views.ParseFS(templates.FS, "layout.html", "signup.html"),
 	)
 	r.Get("/signup", usersC.New)
+	r.Post("/users", usersC.Create)
 
 	workDir, _ := os.Getwd()
 	filesDir := http.Dir(filepath.Join(workDir, "dist"))

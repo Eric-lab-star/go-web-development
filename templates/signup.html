@@ -16,6 +16,12 @@
       name="email"
       type="email"
       autocomplete="email"
+      value="{{.Email}}"
+      {{if
+      not
+      .Email}}
+      autofocus
+      {{end}}
       placeholder="Insert Email Address"
     />
   </div>
