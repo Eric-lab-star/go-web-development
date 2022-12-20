@@ -5,7 +5,7 @@ Learning how to build web application with go
 ## Commands Notes
 
 _docker command to start psql_
-docker exec -it go-web-development-db-1 /usr/bin/psql -U baloo -d lenslocked
+docker exec -it go-web-development-db-1 /usr/bin/psql -U kim -d blog
 
 ## Time Line
 

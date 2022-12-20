@@ -6,9 +6,9 @@ services:
     image: postgres # The postgres image will be used
     restart: always # Always try to restart if this stops running
     environment: # Provide environment variables
-      POSTGRES_USER: baloo # POSTGRES_USER env var w/ value baloo
-      POSTGRES_PASSWORD: junglebook
-      POSTGRES_DB: lenslocked
+      POSTGRES_USER: kim # POSTGRES_USER env var w/ value baloo
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: blog
     ports: # Expose ports so that apps not running via docker compose can connect to them.
       - 5444:5444 # format here is "port on our machine":"port on container"
 
