@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	_ "github.com/jackc/pgx/v4/stdlib"
+	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
 type PostgresConfig struct {
@@ -40,7 +40,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
-	fmt.Println("Connected to DB~")
 	defer db.Close()
+	fmt.Println("Connected to DB")
 }
