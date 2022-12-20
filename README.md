@@ -1,8 +1,13 @@
 # go-web-development
 
-## Me trying to learn how to build web application with go
+Learning how to build web application with go
 
-### Notes
+## Commands Notes
 
 _docker command to start psql_
 docker exec -it go-web-development-db-1 /usr/bin/psql -U baloo -d lenslocked
+
+## Time Line
+
+- 2022-12-20
+  - updating records ~
