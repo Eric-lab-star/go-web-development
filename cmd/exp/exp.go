@@ -67,15 +67,30 @@ func main() {
 
 	//Insert some data..
 
-	name := "Mee"
-	email := "mee1091@gmail.com"
+	// name := "Mee"
+	// email := "mee1091@gmail.com"
+	// row := db.QueryRow(`
+	//  INSERT INTO users(name,email)
+	//  VALUES($1, $2) RETURNING id;`, name, email)
+	// var id int
+	// err = row.Scan(&id)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println("User created. id = ", id)
+
+	//query single record
+	id := 7
 	row := db.QueryRow(`
-	 INSERT INTO users(name,email)
-	 VALUES($1, $2) RETURNING id;`, name, email)
-	var id int
-	err = row.Scan(&id)
+	SELECT name, email 
+	FROM users
+	WHERE  id = $1;
+	`, id)
+	var name, email string
+	err = row.Scan(&name, &email)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("User created. id = ", id)
+	fmt.Printf("User information: name: %s email: %s \n", name, email)
+
 }
